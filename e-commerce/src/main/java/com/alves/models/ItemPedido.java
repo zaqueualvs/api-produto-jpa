@@ -26,4 +26,19 @@ public class ItemPedido {
     private Produto produto;
     private BigDecimal precoProduto;
     private Integer quantidade;
+    private BigDecimal subTotal;
+
+    @PrePersist
+    public void aoPersistir() {
+        calcularSubTotal();
+    }
+
+    @PreUpdate
+    public void aoAtualizar() {
+        calcularSubTotal();
+    }
+
+    public void calcularSubTotal() {
+        subTotal = getPrecoProduto().multiply(new BigDecimal(quantidade));
+    }
 }
