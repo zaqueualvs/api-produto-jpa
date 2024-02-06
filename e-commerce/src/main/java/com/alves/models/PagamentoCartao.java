@@ -15,9 +15,10 @@ import lombok.Setter;
 @Table(name = "pagamento_cartao")
 public class PagamentoCartao {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "pedido_id")
     private Long id;
     @OneToOne(optional = false)
+    @MapsId
     @JoinColumn(name = "pedido_id")
     private Pedido pedido;
     @Enumerated(EnumType.STRING)

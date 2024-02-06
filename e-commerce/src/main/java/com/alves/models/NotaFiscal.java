@@ -17,8 +17,9 @@ import java.util.logging.XMLFormatter;
 @Table(name = "nota_fiscal")
 public class NotaFiscal {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "pedido_id")
     private Long id;
+    @MapsId
     @OneToOne(optional = false)
     @JoinColumn(name = "pedido_id")
     private Pedido pedido;

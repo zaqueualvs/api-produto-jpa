@@ -35,8 +35,11 @@ public class Pedido {
     private PagamentoCartao pagamentoCartao;
     @OneToOne(mappedBy = "pedido")
     private NotaFiscal notaFiscal;
+    @Column(name = "data_criacao", updatable = false)
     private OffsetDateTime dataCriacao;
+    @Column(name = "data_atualizacao", insertable = false)
     private OffsetDateTime dataAtualizacao;
+    @Column(name = "data_conclusao", insertable = false)
     private OffsetDateTime dataConclusao;
     @Enumerated(EnumType.STRING)
     private StatusPedido status;
