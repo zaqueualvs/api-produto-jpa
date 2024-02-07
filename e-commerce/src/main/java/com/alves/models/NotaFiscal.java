@@ -15,14 +15,12 @@ import java.util.logging.XMLFormatter;
 @Setter
 @Entity
 @Table(name = "nota_fiscal")
-public class NotaFiscal {
-    @Id
-    @Column(name = "pedido_id")
-    private Long id;
+public class NotaFiscal extends EntidadeBaseLong{
     @MapsId
     @OneToOne(optional = false)
     @JoinColumn(name = "pedido_id")
     private Pedido pedido;
-    private String xml;
+    @Lob
+    private byte[] xml;
     private OffsetDateTime dataEmissao;
 }

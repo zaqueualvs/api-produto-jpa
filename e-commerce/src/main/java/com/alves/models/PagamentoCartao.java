@@ -12,16 +12,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "pagamento_cartao")
-public class PagamentoCartao {
-    @Id
-    @Column(name = "pedido_id")
-    private Long id;
-    @OneToOne(optional = false)
-    @MapsId
-    @JoinColumn(name = "pedido_id")
-    private Pedido pedido;
-    @Enumerated(EnumType.STRING)
-    private StatusPagamento status;
-    private String numero;
+@DiscriminatorValue("cartao")
+public class PagamentoCartao extends Pagamento{
+
+    @Column(name = "numero_cartao")
+    private String numeroCartao;
 }

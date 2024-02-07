@@ -1,9 +1,12 @@
 package com.alves;
 
+import com.alves.models.ItemPedido;
+import com.alves.models.Pedido;
 import com.alves.models.Produto;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -24,6 +27,8 @@ public class Main {
 
         Produto produto = entityManager.find(Produto.class, 1);
         System.out.println(produto.getNome());
+        Pedido itemPedido = entityManager.find(Pedido.class, 1);
+        System.out.println("r");
 
         entityManager.close();
         entityManagerFactory.close();

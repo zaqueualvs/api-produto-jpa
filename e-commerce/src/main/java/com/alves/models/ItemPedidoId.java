@@ -10,7 +10,6 @@ import java.io.Serializable;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Embeddable
 public class ItemPedidoId implements Serializable {
 

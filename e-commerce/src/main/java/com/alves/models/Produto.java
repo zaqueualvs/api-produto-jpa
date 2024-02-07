@@ -15,11 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @Setter
 @Getter
-public class Produto {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Produto extends EntidadeBaseLong{
     private String nome;
     @Column(name = "data_criacao", updatable = false)
     private OffsetDateTime dataCriacao;
@@ -27,6 +23,8 @@ public class Produto {
     private OffsetDateTime dataAtualizacao;
     private String descricao;
     private BigDecimal preco;
+    @Lob
+    private byte[] foto;
 
     @ManyToMany
     @JoinTable(name = "produto_categoria",

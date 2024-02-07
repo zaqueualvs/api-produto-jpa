@@ -12,14 +12,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "pagamento_boleto")
-public class PagamentoBoleto {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @OneToOne
-    private Pedido pedido;
-    @Enumerated(EnumType.STRING)
-    private StatusPagamento status;
+@DiscriminatorValue("boleto")
+public class PagamentoBoleto extends Pagamento{
+
+    @Column(name = "codigo_barras")
     private String codigoBarras;
 }

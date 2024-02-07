@@ -21,10 +21,7 @@ import java.util.List;
 @Entity
 @Table(name = "pedido")
 @EntityListeners({GerarNotaFiscalListener.class, GenericoListener.class})
-public class Pedido {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Pedido extends EntidadeBaseLong {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "cliente_id")
@@ -32,7 +29,7 @@ public class Pedido {
     @OneToMany(mappedBy = "pedido")
     private List<ItemPedido> itemPedidos = new ArrayList<>();
     @OneToOne(mappedBy = "pedido")
-    private PagamentoCartao pagamentoCartao;
+    private Pagamento pagamento;
     @OneToOne(mappedBy = "pedido")
     private NotaFiscal notaFiscal;
     @Column(name = "data_criacao", updatable = false)

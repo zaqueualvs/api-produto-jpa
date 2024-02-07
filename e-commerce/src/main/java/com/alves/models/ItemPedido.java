@@ -9,7 +9,6 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "item_pedido")
 public class ItemPedido {
@@ -30,6 +29,8 @@ public class ItemPedido {
     private BigDecimal subTotal;
 
     @PrePersist
+    @PostPersist
+    @PostLoad
     public void aoPersistir() {
         calcularSubTotal();
     }
@@ -40,6 +41,7 @@ public class ItemPedido {
     }
 
     public void calcularSubTotal() {
-        subTotal = getPrecoProduto().multiply(new BigDecimal(quantidade));
+        setPrecoProduto(produto.getPreco());
+        setSubTotal(getPrecoProduto().multiply(new BigDecimal(quantidade)));
     }
 }
