@@ -24,9 +24,10 @@ import java.util.List;
 public class Pedido extends EntidadeBaseLong {
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "cliente_id")
+    @JoinColumn(name = "cliente_id",
+            foreignKey = @ForeignKey(name = "fk_pedido_cliente"))
     private Cliente cliente;
-    @OneToMany(mappedBy = "pedido")
+    @OneToMany(mappedBy = "pedido",cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<ItemPedido> itemPedidos = new ArrayList<>();
     @OneToOne(mappedBy = "pedido")
     private Pagamento pagamento;

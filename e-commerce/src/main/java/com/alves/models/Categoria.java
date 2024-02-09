@@ -14,8 +14,10 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "categoria")
-public class Categoria extends EntidadeBaseLong{
+@Table(name = "categoria", uniqueConstraints = {
+        @UniqueConstraint(name = "uniq_nome", columnNames = {"nome"})},
+        indexes = {@Index(name = "idx_nome", columnList = "nome")})
+public class Categoria extends EntidadeBaseLong {
 
     private String nome;
 

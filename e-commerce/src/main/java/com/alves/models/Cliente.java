@@ -2,10 +2,7 @@ package com.alves.models;
 
 import com.alves.models.enums.SexoCliente;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.time.OffsetTime;
@@ -14,15 +11,18 @@ import java.util.List;
 import java.util.Map;
 
 @Entity
-@Table(name = "cliente")
+@Table(name = "cliente", uniqueConstraints = {@UniqueConstraint(
+        name = "unq_cpf", columnNames = {"cpf"})},
+        indexes = {@Index(name = "idx_nome", columnList = "nome")})
 @AllArgsConstructor
 @NoArgsConstructor
 @SecondaryTable(name = "cliente_detalhe", pkJoinColumns = @PrimaryKeyJoinColumn(name = "cliente_id"))
 @Setter
 @Getter
-public class Cliente extends EntidadeBaseLong{
+public class Cliente extends EntidadeBaseLong {
 
     private String nome;
+    private String cpf;
     @Transient
     private String primeiroNome;
 
